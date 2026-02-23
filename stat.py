@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 # initializing options
-optionA, optionB, optionNumber = None, None, None
+optionA, optionB, optionM, optionN, optionNumber = None, None, None, None, None
 filename = None
 
 def usage(msg=None):
@@ -20,6 +20,8 @@ while len(sys.argv) > 1:
         optionB = True
     elif arg == '-m':
         optionM = True
+    elif arg == '-n':
+        optionN = True
     elif arg == '-c':
         try:
             # There are possibility for failure here - no argument, not integer
@@ -59,14 +61,26 @@ with open(filename, "r") as infile:
     elif optionB:
     
         print("OptionB is on the scene")  
+
     elif optionM:
+
         for line in infile:
             collums = line.strip().split("\t")
             for collumn in collums:
                 number_list.append(float(collumn))
         
         median_number = int(len(number_list)/2)
-        print(number_list[median_number -1])   
+        print(number_list[median_number -1])  
+
+
+    elif optionN:
+
+        for line in infile:
+            collums = line.strip().split("\t")
+            for collumn in collums:
+                number_list.append(float(collumn))
+        number_of_observations = len(number_list)
+        print(number_of_observations)   
 
 
     elif optionNumber is not None:
