@@ -7,7 +7,6 @@ with open("scores.txt", "r") as infile:
         accession_number = collums[0]
         scores = list(map(float, collums[1:N]))
         combined_score = sum(scores)
-        line += 1
         
         while len(max_scores) < 10:
             max_scores.append((accession_number, combined_score))
