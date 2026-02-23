@@ -18,6 +18,8 @@ while len(sys.argv) > 1:
         optionA = True
     elif arg == '-b':
         optionB = True
+    elif arg == '-m':
+        optionM = True
     elif arg == '-c':
         try:
             # There are possibility for failure here - no argument, not integer
@@ -55,19 +57,32 @@ with open(filename, "r") as infile:
         print(average_value)     
 
     elif optionB:
-        print("OptionB is on the scene")    
+    
+        print("OptionB is on the scene")  
+    elif optionM:
+        for line in infile:
+            collums = line.strip().split("\t")
+            for collumn in collums:
+                number_list.append(float(collumn))
+        
+        median_number = int(len(number_list)/2)
+        print(number_list[median_number -1])   
+
+
     elif optionNumber is not None:
             
-            for line in infile:
-                collums = line.strip().split("\t")
-                number_list.append(collums[(optionNumber - 1)])
-                print(number_list)
+        for line in infile:
+            collums = line.strip().split("\t")
+            number_list.append(collums[(optionNumber - 1)])
+                
+        print(number_list)
 
     elif filename == arg:
             
-            for line in infile:
-                collums = line.strip().split("\t")
-                N = len(collums) - 1
-                number_list.append(collums[0:N])
-                print(number_list)        
+        for line in infile:
+            collums = line.strip().split("\t")
+            N = len(collums) - 1
+            number_list.append(collums[0:N])
+
+        print(number_list)        
 
