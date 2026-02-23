@@ -38,25 +38,36 @@ if filename is None:
     usage("Hey, you need a filename")
 else:
     print("Using this file:", filename)
-if optionA:
-    print("OptionA reporting for duty")    
-if optionB:
-    print("OptionB is on the scene")    
-if optionNumber is not None:
-    with open(filename, "r") as infile:
-        number_list = []
 
+
+number_list = [] #initiated globally is prob better than 5 times
+collumn_value = 0.0
+collumn_count = 0.0
+
+with open(filename, "r") as infile:
+    if optionA:
         for line in infile:
             collums = line.strip().split("\t")
-            number_list.append(collums[(optionNumber - 1)])
-            print(number_list)
-if filename == arg:
-     with open(filename, "r") as infile:
-        number_list = []
-        
-        for line in infile:
-            collums = line.strip().split("\t")
-            N = len(collums) - 1
-            number_list.append(collums[0:N])
-            print(number_list)        
+            for collumn in collums:
+                collumn_value += float(collumn)
+                collumn_count += 1
+        average_value = collumn_value / collumn_count
+        print(average_value)     
+
+    elif optionB:
+        print("OptionB is on the scene")    
+    elif optionNumber is not None:
+            
+            for line in infile:
+                collums = line.strip().split("\t")
+                number_list.append(collums[(optionNumber - 1)])
+                print(number_list)
+
+    elif filename == arg:
+            
+            for line in infile:
+                collums = line.strip().split("\t")
+                N = len(collums) - 1
+                number_list.append(collums[0:N])
+                print(number_list)        
 
